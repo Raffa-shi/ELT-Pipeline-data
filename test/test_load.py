@@ -1,23 +1,18 @@
 import pandas as pd
-from utils.transform import transform_data
+from utils.load import save_to_csv
+import os
 
 
-def test_transform_data():
+def test_save_to_csv():
 
-    data = {
-        "Title": ["Kaos Polos"],
-        "Price": ["$10"],
-        "Rating": ["4.8 / 5"],
-        "Colors": ["3 Colors"],
-        "Size": ["Size: M"],
-        "Gender": ["Gender: Men"],
-        "timestamp": ["2026-05-15"]
-    }
+    df = pd.DataFrame({
+        "Title": ["Testing"]
+    })
 
-    df = pd.DataFrame(data)
+    filename = "test_products.csv"
 
-    result = transform_data(df)
+    save_to_csv(df, filename)
 
-    assert result["Price"].iloc[0] == 160000
-    assert result["Rating"].iloc[0] == 4.8
-    assert result["Colors"].iloc[0] == 3
+    assert os.path.exists(filename)
+
+    os.remove(filename)
