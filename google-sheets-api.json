@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "delta-rain-496411-p0",
+  "private_key_id": "b0edf3bb3f8290aba83791d87d10513ee5c37b87",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/leU41SHnFCVu\npr+Se9pipIT8mG5ALwwLIIMbxaxk0FmQIo4tEaxSoEMAZmGhAzqxes7mxjdlrqfi\nDvBiCw2ynNGgua6AAmYvaBmeHh3Td/Sx1jOThgzKdd5zB2FWwiMvQNDmTlCvX8UV\nH+ve35ccfRIo4w452MxhyNAPCSpKpCqTrUtWqGDN/quCtDEssloruHhlOhmoZeXH\nmJTS5uCRrYxQmmJZUmQwK2sZ4jSAcjKdfW/aKLje/mTS+P2Do/l8dfcHgVynFHDY\nhbmQv7sLiECdxUeiUURroAU/tP9gnudNSkmcfE0KnwqJHz+tqBvPjq2jChHCYXFx\nReM2VE7lAgMBAAECggEAKTGmSVuOgBy1Vb715x3JXbdpPtTZs+RJzySs/C47PKwN\n7e94KZmot1VtQqtA57mFh77TuQw6whrVT0aOCk69IcAVVN1H949MgHn+NCDeoecj\njo9zpI9Itcm1TH90Pw7cON9Ta4nAUI0jl8C220OxPrdnzbHQj8CdZZMjpW//j2+w\n0gBmtkQWz21KTQmnxjBhxBdIzjl0C20AeIYqoNpUNni6Vlvhkipg1lL167nNX4ge\nOd3fR/PJRjEan7AaNSuT1q5BcxElLaGpjR/vmnXIr0UqqgUv5XwCehvqrYMSTDlW\n4R4E1PoyYpfeJX2Y1klQWVEX4qotmmPsxwhY6P3pWwKBgQDi4JVusdXYhC236qNs\nwe8uaTDOINAWbIyjwp1q/AGiykevLhVwELqh7+ex3fehiynZPxSixJ1ikJHtFOem\nXWCBu0SBC1TrXBR1PUjtmuFMI279HeK2eCnpT59yXeSrlk4VQO1g0xJI7dRorLGk\nA4RDTbh0NjYiy4mYfeiWpCPV1wKBgQDYLZbRZTuEmaPdtLcyyMYPcCRLKbaJQPiN\naXXOUqr6h0KthtVa0MX+Y58EbH2iS0kGkrOE60S8c1mtZwQ8HwJ+UTzLchymp0gx\nebFAgzgX/qyCG9CenTvy6RdZlbCJ3jcTdZQu66PjtNXh4lGkpCa5BXwhblD/yR3J\ni7qIeHMxowKBgFYjElkOp7Qmqvzy1s1J7DdgtKjuCFMbL2JVV1LxDuXxirnV80my\n8EjfPsZnEceBgIf8zSbnIyHy5ZRvpWuidCuNH/smhD0/nnzMoc2kSfmQUmlDWXoR\nsUfldRIE1/bVgBvNpNJoEL8jnMuJFYDB3Qt4jJmCo5ceU8VTuGTJONnNAoGBAMpo\n7UUEp1TB0qe9FKdtS92an7Dszqf2+ILX0uErkEHhMfJuRAizYB+PwY2P05aJLUgF\nRidXblWRH893nIR6eIgzolvPbbow+SyyB+AivPvijj2Is65ABKitzRopSVHdie4j\ncmr4YczMPlMw6EbjGAq3cwGOXDMTaVuUBETRmvJHAoGAe1YXPK5EFfkx9bg5eVQp\nr/fQKcd4jFwgdaKkld/ZBfOW3p5vxOexiWY+r3SYpMdyfrQ3xNUAzxnJrPIuIePC\n1UWuHt8Q3cElTwe/6HGkVaHkRIUmjDgZatS9+P0PJTP90TYrWZ7jqp4NhN359Xm7\n1L2qjjEgQZfqz7qdkqkv8Ac=\n-----END PRIVATE KEY-----\n",
+  "client_email": "fashion-etl@delta-rain-496411-p0.iam.gserviceaccount.com",
+  "client_id": "109897131949768736316",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/fashion-etl%40delta-rain-496411-p0.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
