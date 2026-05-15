@@ -5,31 +5,34 @@ import re
 USD_TO_IDR = 16000
 
 
-def clean_price(price: str):
+def clean_price(price):
 
     try:
-        number = float(price.replace("$", "").strip())
 
-        return int(number * USD_TO_IDR)
+        number = re.sub(r"[^0-9.]", "", price)
+
+        return int(float(number) * USD_TO_IDR)
 
     except:
         return None
 
 
-def clean_rating(rating: str):
+def clean_rating(rating):
 
     try:
-        value = rating.split("/")[0].strip()
 
-        return float(value)
+        number = re.search(r"(\d+(\.\d+)?)", rating)
+
+        return float(number.group(1))
 
     except:
         return None
 
 
-def clean_colors(colors: str):
+def clean_colors(colors):
 
     try:
+
         number = re.search(r"\d+", colors)
 
         return int(number.group())
@@ -38,32 +41,36 @@ def clean_colors(colors: str):
         return None
 
 
-def clean_size(size: str):
+def clean_size(size):
 
     try:
-        return size.replace("Size: ", "").strip()
+
+        return size.replace("Size:", "").strip()
 
     except:
         return None
 
 
-def clean_gender(gender: str):
+def clean_gender(gender):
 
     try:
-        return gender.replace("Gender: ", "").strip()
+
+        return gender.replace("Gender:", "").strip()
 
     except:
         return None
 
 
-def transform_data(df: pd.DataFrame):
+def transform_data(df):
 
     try:
 
         df = df.copy()
 
+        # REMOVE INVALID
         df = df[df["Title"] != "Unknown Product"]
 
+        # CLEANING
         df["Price"] = df["Price"].apply(clean_price)
 
         df["Rating"] = df["Rating"].apply(clean_rating)
@@ -74,15 +81,18 @@ def transform_data(df: pd.DataFrame):
 
         df["Gender"] = df["Gender"].apply(clean_gender)
 
-        df.drop_duplicates(inplace=True)
-
+        # DROP NULL
         df.dropna(inplace=True)
 
+        # DROP DUPLICATE
+        df.drop_duplicates(inplace=True)
+
+        # TYPE CASTING
         df["Price"] = df["Price"].astype(int)
 
-        df["Colors"] = df["Colors"].astype(int)
-
         df["Rating"] = df["Rating"].astype(float)
+
+        df["Colors"] = df["Colors"].astype(int)
 
         df["Title"] = df["Title"].astype(str)
 
@@ -93,5 +103,7 @@ def transform_data(df: pd.DataFrame):
         return df
 
     except Exception as e:
-        print(f"[ERROR] transform_data gagal: {e}")
+
+        print(f"[ERROR] transform_data: {e}")
+
         return pd.DataFrame()
