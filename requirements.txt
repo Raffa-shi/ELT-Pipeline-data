@@ -1,0 +1,11 @@
+beautifulsoup4
+pandas
+requests
+lxml
+pytest
+pytest-cov
+gspread
+oauth2client
+sqlalchemy
+psycopg2-binary
+python-dotenv
