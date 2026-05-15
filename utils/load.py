@@ -58,7 +58,7 @@ def save_to_postgresql(df: pd.DataFrame):
     try:
 
         DATABASE_URL = (
-            "postgresql://postgres:password@localhost:5432/fashion_db"
+            "postgresql+psycopg2://postgres:postgres@127.0.0.1:5432/fashion_db"
         )
 
         engine = create_engine(DATABASE_URL)
