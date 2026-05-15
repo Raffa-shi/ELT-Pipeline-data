@@ -1,72 +1,45 @@
 import requests
 import pandas as pd
+
 from bs4 import BeautifulSoup
 from datetime import datetime
-import time
 
 
 BASE_URL = "https://fashion-studio.dicoding.dev"
 
 
-def fetch_page(url: str):
-    """s
-    Mengambil HTML dari halaman website.
-    """
+def fetch_page(url):
 
     try:
-        response = requests.get(url, timeout=10)
+
+        headers = {
+            "User-Agent": "Mozilla/5.0"
+        }
+
+        response = requests.get(
+            url,
+            headers=headers,
+            timeout=10
+        )
 
         response.raise_for_status()
 
         return response.text
 
-    except requests.exceptions.RequestException as e:
-        print(f"[ERROR] Gagal mengambil halaman: {e}")
+    except Exception as e:
+
+        print(f"[ERROR] fetch_page: {e}")
+
         return None
 
 
-def parse_product(card):
-    """
-    Parsing data produk dari card HTML.
-    """
-
-    try:
-        title = card.find("h3", class_="product-title").text.strip()
-
-        price = card.find("span", class_="price").text.strip()
-
-        rating = card.find("p", class_="rating").text.strip()
-
-        colors = card.find("p", class_="colors").text.strip()
-
-        size = card.find("p", class_="size").text.strip()
-
-        gender = card.find("p", class_="gender").text.strip()
-
-        timestamp = datetime.now()
-
-        return {
-            "Title": title,
-            "Price": price,
-            "Rating": rating,
-            "Colors": colors,
-            "Size": size,
-            "Gender": gender,
-            "timestamp": timestamp
-        }
-
-    except AttributeError as e:
-        print(f"[ERROR] Parsing gagal: {e}")
-        return None
-
-
-def scrape_main(total_pages: int = 50):
+def scrape_main():
 
     all_products = []
 
     try:
 
-        for page in range(1, total_pages + 1):
+        for page in range(1, 51):
 
             url = f"{BASE_URL}/page{page}"
 
@@ -75,25 +48,60 @@ def scrape_main(total_pages: int = 50):
             if html is None:
                 continue
 
-            soup = BeautifulSoup(html, "lxml")
+            soup = BeautifulSoup(html, "html.parser")
+
+            # DEBUG
+            print(f"\nSCRAPING PAGE {page}")
 
             cards = soup.find_all("div", class_="collection-card")
 
+            print(f"JUMLAH CARD: {len(cards)}")
+
             for card in cards:
 
-                product = parse_product(card)
+                try:
 
-                if product:
+                    # DEBUG HTML CARD
+                    print(card.prettify()[:300])
+
+                    title_tag = card.find("h3")
+                    price_tag = card.find("span", class_="price")
+
+                    p_tags = card.find_all("p")
+
+                    if (
+                        title_tag is None
+                        or price_tag is None
+                        or len(p_tags) < 4
+                    ):
+                        continue
+
+                    product = {
+                        "Title": title_tag.get_text(strip=True),
+                        "Price": price_tag.get_text(strip=True),
+                        "Rating": p_tags[0].get_text(strip=True),
+                        "Colors": p_tags[1].get_text(strip=True),
+                        "Size": p_tags[2].get_text(strip=True),
+                        "Gender": p_tags[3].get_text(strip=True),
+                        "timestamp": datetime.now()
+                    }
+
+                    print(product)
+
                     all_products.append(product)
 
-            print(f"[INFO] Page {page} berhasil di-scrape")
+                except Exception as e:
 
-            time.sleep(1)
+                    print(f"[ERROR] parsing card: {e}")
+
+            print(f"[INFO] PAGE {page} selesai")
 
         df = pd.DataFrame(all_products)
 
         return df
 
     except Exception as e:
-        print(f"[ERROR] scrape_main gagal: {e}")
+
+        print(f"[ERROR] scrape_main: {e}")
+
         return pd.DataFrame()
